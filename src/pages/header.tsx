@@ -2,8 +2,15 @@
 // import styles from "./header.scss"
 import { signInWithPopup, signOut } from "firebase/auth"
 import { provider } from "../firebase"
+import {type Auth , type User} from "firebase/auth"
 
-export default function header({ auth, user }) {
+interface HeaderProps{
+auth:Auth
+user:User | null |undefined
+
+}
+
+export default function Header({ auth,user}:HeaderProps) {
 
     return (
         <>
@@ -22,7 +29,7 @@ export default function header({ auth, user }) {
     )
 }
 
-const userLogin=()=>{
+// const userLogin=()=>{
 
     
-}
+// }
