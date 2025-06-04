@@ -1,0 +1,16 @@
+.header {
+     background-color: rgb(64, 206, 81);
+    .title {
+        display: flex;
+        justify-content: space-between;
+       margin:auto;
+        padding: 5px;
+
+        .login {
+            background-color: rgb(255, 169, 40);
+            margin: 10px;
+            padding: 5px;
+
+        }
+    }
+}
