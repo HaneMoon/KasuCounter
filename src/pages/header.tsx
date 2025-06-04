@@ -14,18 +14,27 @@ export default function Header({ auth, user }: HeaderProps) {
     return (
         <>
             <div className={styles.header}>
-                <h1 className={styles.title}>位置情報をとるサイト <span>
-                    <h2 onClick={() => {
-                        if (user) {
-                            signOut(auth)
-                        } else {
-                            signInWithPopup(auth, provider)
-                        }
-                    }}
-                        className={styles.login}>
-                        {user ? "ログアウト" : "ログイン"}
-                    </h2>
-                </span> </h1>
+                <h1 className={styles.title}>位置情報をとるサイト
+                    <span>
+                        <h2 onClick={() => {
+                            if (user) {
+                                signOut(auth)
+                            } else {
+                                signInWithPopup(auth, provider)
+                            }
+                        }}
+                            className={user ? styles.loginTrue : styles.loginFalse}>
+                            {user ? <span>
+                                <img
+                                    src={user.photoURL ?? undefined}
+                                    alt={user.displayName ?? undefined}
+                                    width="30"
+                                    height="30"
+                                />
+                                <span className={styles.eMail}>{user.email}</span>
+                            </span> : "ログイン"}
+                        </h2>
+                    </span> </h1>
             </div>
         </>
     )

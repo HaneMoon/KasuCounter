@@ -1,5 +1,5 @@
 .header {
-   background-color: #7bab4f;
+    background-color: #7bab4f;
 
     .title {
         display: flex;
@@ -7,12 +7,23 @@
         margin: auto;
         padding: 5px;
 
-        .login {
+        .loginTrue {
             background-color: rgb(227, 157, 51);
             border-radius: 10%;
             margin: 10px;
             padding: 5px;
-
+            font-size: 15px;
+            .eMail{
+                
+                padding:10px;
+            }
+        }
+        .loginFalse {
+            background-color: rgb(227, 157, 51);
+            border-radius: 10%;
+            margin: 10px;
+            padding: 5px;
+           font-size: 25px;
         }
     }
 }
