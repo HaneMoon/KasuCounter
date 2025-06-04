@@ -8,11 +8,9 @@ import styles from "./header.module.scss"
 interface HeaderProps {
     auth: Auth
     user: User | null | undefined
-
 }
 
 export default function Header({ auth, user }: HeaderProps) {
-
     return (
         <>
             <div className={styles.header}>

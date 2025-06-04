@@ -1,7 +1,7 @@
 import { useState } from "react"
 import Button from "react-bootstrap/Button"
 
-export default function location() {
+export default function Location() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 })
     return (
         <>        <h1>現在地の位置情報(継続して取得)</h1>
