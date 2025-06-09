@@ -12,7 +12,7 @@ interface HeaderProps {
 export default function Location({ user }: HeaderProps) {
     const [location, setLocation] = useState({ lat: 0, lng: 0 })
     const [savedLoc, setSavedLoc] = useState({ lat: 0, lng: 0 })
-     const databaseRef = ref(database, `Location/${user?.uid}`)
+     const databaseRef = ref(database, `users/${user?.uid}`)
     // const databaseRef = ref(database, `Location/${user?.email}`)
     useEffect(() => {
         onValue(databaseRef, (snapshot) => {
