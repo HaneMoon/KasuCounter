@@ -1,22 +1,30 @@
 import { useState, useEffect } from "react"
 import Button from "react-bootstrap/Button"
 import { ref, set, onValue } from "firebase/database"
-import { auth, database } from "../firebase"
+import { database } from "../firebase"
+import styles from "./style.module.scss"
+import { type User } from "firebase/auth"
 
-export default function Location() {
+interface HeaderProps {
+    user: User | null | undefined
+}
+
+export default function Location({ user }: HeaderProps) {
     const [location, setLocation] = useState({ lat: 0, lng: 0 })
-    const [savedLoc, setSavedLoc] = useState({ let: 0, lng: 0 })
-    const databaseRef = ref(database, "Location")
+    const [savedLoc, setSavedLoc] = useState({ lat: 0, lng: 0 })
+     const databaseRef = ref(database, `Location/${user?.uid}`)
+    // const databaseRef = ref(database, `Location/${user?.email}`)
     useEffect(() => {
         onValue(databaseRef, (snapshot) => {
             const data = snapshot.val()
             if (data) {
-                setSavedLoc({ let: data.lat, lng: data.lng })
+                setSavedLoc({ lat: data.lat, lng: data.lng })
 
             }
+
         })
-    }, [])
-    
+    }, [user])
+
     return (
         <>
             <h1>位置情報</h1>
@@ -39,11 +47,15 @@ export default function Location() {
 
             <Button
                 onClick={() => {
-                    set(ref(database, "Location"), { lat: location.lat, lng: location.lng })
+                        set(databaseRef, { lat: location.lat, lng: location.lng }).then(()=>console.log("保存したよ"))
                 }}>位置情報を保存</Button>
             <div>
-                <h3>保存した位置情報</h3>
-                {/* <p>{savedLoc}</p> */}
+                <div className={styles.savedLoc}>
+                    <h3 >保存した位置情報</h3>
+                    <p>緯度：{savedLoc.lat}</p>
+                    <p>経度:{savedLoc.lng}</p>
+                    <p></p>
+                </div>
             </div>
 
         </>

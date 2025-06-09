@@ -16,19 +16,19 @@ function App() {
 
   return (
     <>
-    <Header auth={auth} user={user}/>
+      <Header auth={auth} user={user} />
       <Container fluid className="text-center">
-        {/* <Counter /> */}
+
         <div></div>
         <div>位置情報が使えるように設定してね</div>
         {user ? (
           <>
-            <Location />
+            <Location   user={user}/>
             <LiveLoc />
           </>
-        ) : ( 
+        ) : (
           <div>ログインしろ</div>
-         )} 
+        )}
         <TimeStamp />
 
       </Container>
