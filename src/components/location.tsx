@@ -2,9 +2,9 @@ import { useState, useEffect } from "react"
 import Button from "react-bootstrap/Button"
 import { ref, set, onValue } from "firebase/database"
 import { database } from "../firebase"
-import styles from "./style.module.scss"
 import { type User } from "firebase/auth"
 
+import styles from "./style.module.scss"
 interface HeaderProps {
     user: User | null | undefined
 }
