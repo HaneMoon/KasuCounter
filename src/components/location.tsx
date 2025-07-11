@@ -16,20 +16,30 @@ export default function Location({ user }: HeaderProps) {
     const databaseRef = ref(database, `users/${user?.uid}`)
     // const databaseRef = ref(database, `Location/${user?.email}`)
 
-    const initialCenter: [number, number] = [35.658581, 139.745433];
-    const initialZoom = 13;
-    const markerCoords: [number, number] = [35.681236, 139.767125];
 
     useEffect(() => {
-        onValue(databaseRef, (snapshot) => {
-            const data = snapshot.val()
+        // ユーザーがログインしていない場合は何もしない
+        if (!user?.uid) {
+            console.log("ユーザーがログインしていません。");
+            return;
+        }
+
+        const unsubscribe = onValue(databaseRef, (snapshot) => {
+            const data = snapshot.val();
             if (data) {
-                setSavedLoc({ lat: data.lat, lng: data.lng })
-
+                // Firebaseからデータが取得できたらsavedLocを更新
+                setSavedLoc({ lat: data.lat, lng: data.lng });
             }
+        });
 
-        })
-    }, [user])
+        // クリーンアップ関数: コンポーネントがアンマウントされるときにリスナーを解除
+        return () => unsubscribe();
+    }, [user?.uid, databaseRef]);
+
+    let initialCenter: [number, number] = [savedLoc.lat, savedLoc.lng];
+    const initialZoom = 13;
+    let markerCoords: [number, number] = [35.681236, 139.767125];
+    console.log(initialCenter)
 
     return (
         <>
@@ -62,13 +72,16 @@ export default function Location({ user }: HeaderProps) {
                         <li>緯度：{savedLoc.lat}</li>
                         <li>経度:{savedLoc.lng}</li>
                     </ul>
-                    <MapComponent
-                        center={initialCenter}
-                        zoom={initialZoom}
-                        markerPosition={markerCoords}
-                        popupText="ここは東京駅です！"
-                    />
+                    {(savedLoc.lat !== 0 || savedLoc.lng !== 0) && (
 
+
+                        <MapComponent
+                            center={initialCenter}
+                            zoom={initialZoom}
+                            markerPosition={[savedLoc.lat, savedLoc.lng]}
+                            popupText="ここは東京駅です！"
+                        />
+                    )}
                 </div>
             </div>
 
