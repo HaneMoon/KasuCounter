@@ -38,7 +38,7 @@ export default function Location({ user }: HeaderProps) {
 
     let initialCenter: [number, number] = [savedLoc.lat, savedLoc.lng];
     const initialZoom = 13;
-    let markerCoords: [number, number] = [35.681236, 139.767125];
+    let markerCoords: [number, number] = [savedLoc.lat, savedLoc.lng];
     console.log(initialCenter)
 
     return (
@@ -78,8 +78,8 @@ export default function Location({ user }: HeaderProps) {
                         <MapComponent
                             center={initialCenter}
                             zoom={initialZoom}
-                            markerPosition={[savedLoc.lat, savedLoc.lng]}
-                            popupText="ここは東京駅です！"
+                            markerPosition={markerCoords}
+                            popupText="保存した座標"
                         />
                     )}
                 </div>
