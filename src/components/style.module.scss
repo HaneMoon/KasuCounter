@@ -5,4 +5,9 @@ background-color: rgba(128, 128, 128, 0.279);
 border-radius: 5px;
 
 border: 3px solid gray;
+.savedLocLatLng{
+    display:flex;
+    justify-content: space-around;
+    list-style: none;
+}
 }
