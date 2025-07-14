@@ -20,7 +20,7 @@ export default function Location({ user }: HeaderProps) {
     useEffect(() => {
         // ユーザーがログインしていない場合は何もしない
         if (!user?.uid) {
-            console.log("ユーザーがログインしていません。");
+            console.log("ログインしていません。");
             return;
         }
 
@@ -69,12 +69,10 @@ export default function Location({ user }: HeaderProps) {
                 <div className={styles.savedLoc}>
                     <h3 >保存した位置情報</h3>
                     <ul className={styles.savedLocLatLng}>
-                        <li>緯度：{savedLoc.lat}</li>
-                        <li>経度:{savedLoc.lng}</li>
+                        <li className={styles.latLngInfo}>緯度<p>{savedLoc.lat}</p></li>
+                        <li className={styles.latLngInfo}>経度<p>{savedLoc.lng}</p></li>
                     </ul>
                     {(savedLoc.lat !== 0 || savedLoc.lng !== 0) && (
-
-
                         <MapComponent
                             center={initialCenter}
                             zoom={initialZoom}
