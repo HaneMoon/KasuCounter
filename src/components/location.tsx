@@ -39,7 +39,7 @@ export default function Location({ user }: HeaderProps) {
     let initialCenter: [number, number] = [savedLoc.lat, savedLoc.lng];
     const initialZoom = 13;
     let markerCoords: [number, number] = [savedLoc.lat, savedLoc.lng];
-    console.log(initialCenter)
+    // console.log(initialCenter)
 
     return (
         <>
