@@ -24,7 +24,7 @@ export default function Location() {
     }, [])
 
     let initialCenter: [number, number] = [location.lat, location.lng];
-    const initialZoom = 13;
+    const initialZoom = 17;
     let markerCoords: [number, number] = [location.lat, location.lng];
 
     return (
