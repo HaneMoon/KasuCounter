@@ -29,7 +29,7 @@ export default function NowDate() {
 
   return (
     <>
-      <h2>現在時刻：{timestamp}</h2>
+      <div>{timestamp}</div>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
-// import Button from "react-bootstrap/Button"
 import MapComponent from "./maps"
+import styles from "./style.module.scss"
 
 export default function Location() {
     const [location, setLocation] = useState({ lat: 0, lng: 0 })
@@ -22,23 +22,28 @@ export default function Location() {
         const intervalId = setInterval(updateLocation, 1000)
         return () => clearInterval(intervalId)
     }, [])
+
     let initialCenter: [number, number] = [location.lat, location.lng];
     const initialZoom = 13;
     let markerCoords: [number, number] = [location.lat, location.lng];
+
     return (
         <>
-            <ul>
-                <li>緯度:{location.lat}</li>
-                <li>経度:{location.lng}</li>
-            </ul>
-            {(location.lat !== 0 || location.lng !== 0) && (
-                <MapComponent
-                    center={initialCenter}
-                    zoom={initialZoom}
-                    markerPosition={markerCoords}
-                    popupText="現在の座標"
-                />
-            )}
+            <div className={styles.savedLoc}>
+                <h1>現在地</h1>
+                <ul className={styles.savedLocLatLng}>
+                    <li className={styles.latLngInfo}>緯度<p>{location.lat}</p></li>
+                    <li className={styles.latLngInfo}>経度<p>{location.lng}</p></li>
+                </ul>
+                {(location.lat !== 0 || location.lng !== 0) && (
+                    <MapComponent
+                        center={initialCenter}
+                        zoom={initialZoom}
+                        markerPosition={markerCoords}
+                        popupText="現在の座標"
+                    />
+                )}
+            </div>
         </>
     )
 

@@ -43,7 +43,7 @@ export default function Location({ user }: HeaderProps) {
 
     return (
         <>
-            <h1>位置情報</h1>
+            <h1>位置情報をとるよ</h1>
             <div>
                 <div>緯度: {location.lat}</div>
                 <div>経度: {location.lng}</div>
@@ -65,23 +65,23 @@ export default function Location({ user }: HeaderProps) {
                 onClick={() => {
                     set(databaseRef, { lat: location.lat, lng: location.lng }).then(() => console.log("保存したよ"))
                 }}>位置情報を保存</Button>
-            <div>
-                <div className={styles.savedLoc}>
-                    <h3 >保存した位置情報</h3>
-                    <ul className={styles.savedLocLatLng}>
-                        <li className={styles.latLngInfo}>緯度<p>{savedLoc.lat}</p></li>
-                        <li className={styles.latLngInfo}>経度<p>{savedLoc.lng}</p></li>
-                    </ul>
-                    {(savedLoc.lat !== 0 || savedLoc.lng !== 0) && (
-                        <MapComponent
-                            center={initialCenter}
-                            zoom={initialZoom}
-                            markerPosition={markerCoords}
-                            popupText="保存した座標"
-                        />
-                    )}
-                </div>
+
+            <div className={styles.savedLoc}>
+                <h3 >保存した位置情報</h3>
+                <ul className={styles.savedLocLatLng}>
+                    <li className={styles.latLngInfo}>緯度<p>{savedLoc.lat}</p></li>
+                    <li className={styles.latLngInfo}>経度<p>{savedLoc.lng}</p></li>
+                </ul>
+                {(savedLoc.lat !== 0 || savedLoc.lng !== 0) && (
+                    <MapComponent
+                        center={initialCenter}
+                        zoom={initialZoom}
+                        markerPosition={markerCoords}
+                        popupText="保存した座標"
+                    />
+                )}
             </div>
+
 
         </>
     )

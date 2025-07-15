@@ -47,7 +47,7 @@ function App() {
         ) : (
           <div>ログインしろ</div>
         )}
-        <TimeStamp />
+          <div>現在の時刻:<TimeStamp /></div>
 
       </Container>
     </>
